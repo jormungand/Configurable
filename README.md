@@ -1,10 +1,62 @@
 # Configurable
 
-Configurable protocol: setup objects easy via closure
+Configurable protocol: setup objects easy via closures
 
 ## Usage
 
-### protocol Configurable – for Swift and ObjC classes
+This tiny extension provides the approach to simplify and significantly increase visual perception of the code, to make it more structured, to segregate logic blocks and to get rid of local vars waste:
+
+**Before:**
+
+```swift
+override func loadView() {
+    let view = UITextView(frame: .zero)
+
+    view.backgroundColor = UIColor(white: 1.0, alpha: 0.1)
+    view.isUserInteractionEnabled = false
+    view.font = UIFont.monospacedDigitSystemFont(ofSize: 8.0, weight: UIFont.Weight.regular)
+
+    view.layer.shadowColor = UIColor.white.cgColor
+    view.layer.shadowRadius = 4.0
+    view.layer.shadowOpacity = 0.9
+    view.layer.shadowOffset = .zero
+    view.layer.masksToBounds = false
+
+    self.view = view
+}
+```
+
+**After:**
+
+```swift
+override func loadView() {
+
+    view = UITextView(frame: .zero).configure { view in
+        view.backgroundColor = UIColor(white: 1.0, alpha: 0.1)
+        view.isUserInteractionEnabled = false
+        view.font = UIFont.monospacedDigitSystemFont(ofSize: 8.0, weight: UIFont.Weight.regular)
+
+        view.layer.configure {
+            $0.shadowColor = UIColor.white.cgColor
+            $0.shadowRadius = 4.0
+            $0.shadowOpacity = 0.9
+            $0.shadowOffset = .zero
+            $0.masksToBounds = false
+        }
+    }
+}
+```
+
+## API
+
+Configurable contains 2 protocols: `Configurable` and `MutableConfigurable`. 
+
+Both these protocols provide `func configure(_:)` which takes a configuration closure as a parameter. The difference between them is:
+
+- The `Configurable` protocol is dedicated for using with Swift and ObjC classes, as it passes `Self` into the configuration closure. 
+- The `MutableConfigurable` protocol is dedicated for using with Swift Value Types (basic types, structs, enums, ...), as it passes `inout Self` into the configuration closure. 
+
+### Configurable – for Swift and ObjC classes
 
 ```swift
 
@@ -18,10 +70,9 @@ let view = UIView(frame: .zero).configure { view in
         $0.masksToBounds = true
     }
 }
-
 ```
 
-### protocol MutableConfigurable
+### MutableConfigurable – for Swift Value Types (basic types, structs, enums, ...)
 
 ```swift
 struct MyModelItem: MutableConfigurable {
@@ -30,13 +81,11 @@ struct MyModelItem: MutableConfigurable {
     // ....
 }
 
-
 let myItem = MyModelItem().configure {
     $0.itemID = 123
     $0.name = "name"
     // ....
 }
-
 ```
 
 ## Requirements

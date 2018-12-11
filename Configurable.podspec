@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = "0.1"
   s.summary      = "Configurable protocol: setup objects easy via closure"
   s.description  = <<-DESC
-    TBD
+This tiny extension provides the approach to simplify and significantly increase visual perception of the code, to make it more structured, to segregate logic blocks and to get rid of local vars waste.
   DESC
   s.homepage     = "https://github.com/jormungand/Configurable"
   s.license      = { :type => "MIT", :file => "LICENSE" }
