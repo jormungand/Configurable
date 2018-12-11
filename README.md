@@ -40,7 +40,7 @@ let myItem = MyModelItem().configure {
 ```
 
 ## Requirements
-- Swift 4
+- Swift 4.2
 
 ## Installation<a name="installation"></a>
 
@@ -54,7 +54,7 @@ pod "Configurable"
 
 ### [Carthage](https://github.com/Carthage/Carthage)
 
-To install Arranged add a dependency to your Cartfile:
+To install Configurable add a dependency to your Cartfile:
 
 ```
 github "jormungand/Configurable"
