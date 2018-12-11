@@ -1,88 +1,79 @@
-# Project Title
+# Configurable
 
 Configurable protocol: setup objects easy via closure
 
-## Getting Started
+## Usage
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+### protocol Configurable – for Swift and ObjC classes
 
-### Prerequisites
+```swift
 
-What things you need to install the software and how to install them
+let view = UIView(frame: .zero).configure { view in
 
-```
-Give examples
-```
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.backgroundColor = .green
 
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+    view.layer.configure {
+        $0.cornerRadius = 5.0
+        $0.masksToBounds = true
+    }
+}
 
 ```
-until finished
-```
 
-End with an example of getting some data out of the system or using it for a little demo
+### protocol MutableConfigurable
 
-## Running the tests
+```swift
+struct MyModelItem: MutableConfigurable {
+    var itemID: Int = 0
+    var name: String = ""
+    // ....
+}
 
-Explain how to run the automated tests for this system
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
+let myItem = MyModelItem().configure {
+    $0.itemID = 123
+    $0.name = "name"
+    // ....
+}
 
 ```
-Give an example
+
+## Requirements
+- Swift 4
+
+## Installation<a name="installation"></a>
+
+### [CocoaPods](http://cocoapods.org)
+
+Configurable is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+
+```ruby
+pod "Configurable"
 ```
 
-## Deployment
+### [Carthage](https://github.com/Carthage/Carthage)
 
-Add additional notes about how to deploy this on a live system
+To install Arranged add a dependency to your Cartfile:
 
-## Built With
+```
+github "jormungand/Configurable"
+```
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+### Import
 
-## Contributing
+Import installed modules in your source files
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+```swift
+import Configurable
+```
 
-## Versioning
+## Author
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+Ilya Stroganov, ilya.stroganov@gmail.com
+Linkedin: <https://www.linkedin.com/in/ilyastroganov/>
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
