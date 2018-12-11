@@ -120,6 +120,7 @@ import Configurable
 ## Author
 
 Ilya Stroganov, ilya.stroganov@gmail.com
+
 Linkedin: <https://www.linkedin.com/in/ilyastroganov/>
 
 ## License
